@@ -20,7 +20,7 @@ body {
 button { font: inherit; cursor: pointer; }
 button:disabled { cursor: default; }
 
-.app { max-width: 1040px; margin: 0 auto; padding: 16px; }
+.app { max-width: 760px; margin: 0 auto; padding: 16px; }
 header {
   display: flex; align-items: center; gap: 16px; color: #fff; margin-bottom: 16px;
 }
@@ -32,14 +32,14 @@ header h1 { margin: 0; font-size: 2rem; letter-spacing: 0.04em; }
 }
 .secondary:hover { background: rgba(255,255,255,.1); }
 
-main { display: grid; grid-template-columns: 1fr 420px; gap: 20px; align-items: start; }
-@media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+main { display: flex; flex-direction: column; gap: 16px; padding-bottom: 8px; }
 
 /* Dice tray */
 .tray {
   background: rgba(0,0,0,.18); border-radius: 16px; padding: 20px;
-  display: flex; flex-direction: column; align-items: center; gap: 20px;
-  border-top: 6px solid var(--p0); position: sticky; top: 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  border-top: 6px solid var(--p0); position: sticky; bottom: 8px;
+  background: rgba(8,40,29,.92); backdrop-filter: blur(6px); padding: 14px 16px;
 }
 .tray.p1 { border-top-color: var(--p1); }
 .turn-banner { text-align: center; color: #fff; }
@@ -108,10 +108,10 @@ th small { display: block; font-weight: 400; color: var(--muted); font-size: .72
 .score.option { background: #fffbea; padding: 2px; }
 .score.option button {
   width: 100%; border: 2px dashed var(--accent); background: #fff; border-radius: 6px;
-  padding: 3px 0; color: #9a6b00; font-weight: 600; font-size: 1rem;
+  padding: 3px 0; color: #b08a2e; font-weight: 500; font-style: italic; font-size: 1rem; opacity: .8;
 }
 .score.option button.zero { color: var(--muted); border-color: var(--line); }
-.score.option button:hover { background: var(--accent); color: var(--ink); border-style: solid; }
+.score.option button:hover { background: var(--accent); color: var(--ink); border-style: solid; font-style: normal; opacity: 1; }
 .total th, .total td { background: #faf8f0; }
 .total.strong th, .total.strong td { font-weight: 700; }
 .total.grand th, .total.grand td { font-weight: 800; font-size: 1.2rem; background: #f2eee2; border-bottom: none; }
@@ -124,3 +124,24 @@ th small { display: block; font-weight: 400; color: var(--muted); font-size: .72
 }
 .modal { background: var(--paper); border-radius: 16px; padding: 28px 36px; text-align: center; }
 .modal h2 { margin-top: 0; font-size: 2rem; }
+
+/* Compact sticky tray so it covers less of the scorecard */
+.tray { flex-direction: row; flex-wrap: wrap; justify-content: center; column-gap: 20px; row-gap: 8px; }
+.turn-banner { width: 100%; }
+.turn-name { display: inline; font-size: 1.1rem; margin-right: 8px; }
+.status { font-size: .9rem; }
+.dice { gap: 10px; flex-wrap: nowrap; }
+.die { width: 60px; height: 60px; padding: 8px; border-radius: 12px; }
+.pip { width: 10px; height: 10px; }
+.held-tag { bottom: -16px; font-size: .62rem; }
+.roll { margin-top: 0; padding: 12px 24px; }
+.tray .keys { width: 100%; text-align: center; }
+@media (hover: none) { .tray .keys { display: none; } }
+@media (max-width: 480px) {
+  .app { padding: 10px; }
+  .dice { gap: 6px; }
+  .die { width: 52px; height: 52px; padding: 7px; }
+  .pip { width: 9px; height: 9px; }
+  .turn-name { display: none; }
+  .roll { width: 100%; justify-content: center; margin-top: 6px; }
+}

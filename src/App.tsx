@@ -233,40 +233,6 @@ export default function App() {
       </header>
 
       <main>
-        <section className={`tray p${current}`}>
-          <div className="turn-banner">
-            {!gameOver && <span className="turn-name">{player.name}'s turn</span>}
-            <span className="status">{status}</span>
-          </div>
-          <div className="dice">
-            {dice.map((v, i) => (
-              <Die
-                key={i}
-                index={i}
-                value={v}
-                held={held[i]}
-                blank={!hasRolled && !rolling}
-                rolling={rolling}
-                disabled={!hasRolled || rollsLeft === 0 || rolling || gameOver}
-                onClick={() => toggleHold(i)}
-              />
-            ))}
-          </div>
-          <button
-            className="roll"
-            onClick={roll}
-            disabled={rollsLeft === 0 || rolling || gameOver}
-          >
-            {hasRolled ? 'Roll again' : 'Roll'}
-            <span className="rolls-left">
-              {Array.from({ length: ROLLS_PER_TURN }, (_, i) => (
-                <span key={i} className={`dot ${i < rollsLeft ? 'on' : ''}`} />
-              ))}
-            </span>
-          </button>
-          <p className="keys">Space: roll · 1–5: hold die</p>
-        </section>
-
         <section className="card">
           <table>
             <thead>
@@ -345,6 +311,40 @@ export default function App() {
             </tbody>
           </table>
         </section>
+        <section className={`tray p${current}`}>
+          <div className="turn-banner">
+            {!gameOver && <span className="turn-name">{player.name}'s turn</span>}
+            <span className="status">{status}</span>
+          </div>
+          <div className="dice">
+            {dice.map((v, i) => (
+              <Die
+                key={i}
+                index={i}
+                value={v}
+                held={held[i]}
+                blank={!hasRolled && !rolling}
+                rolling={rolling}
+                disabled={!hasRolled || rollsLeft === 0 || rolling || gameOver}
+                onClick={() => toggleHold(i)}
+              />
+            ))}
+          </div>
+          <button
+            className="roll"
+            onClick={roll}
+            disabled={rollsLeft === 0 || rolling || gameOver}
+          >
+            {hasRolled ? 'Roll again' : 'Roll'}
+            <span className="rolls-left">
+              {Array.from({ length: ROLLS_PER_TURN }, (_, i) => (
+                <span key={i} className={`dot ${i < rollsLeft ? 'on' : ''}`} />
+              ))}
+            </span>
+          </button>
+          <p className="keys">Space: roll · 1–5: hold die</p>
+        </section>
+
       </main>
 
       {gameOver && (
